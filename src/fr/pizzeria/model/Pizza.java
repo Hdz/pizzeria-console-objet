@@ -12,19 +12,18 @@ public class Pizza {
 	private double prix;
 	private static int cpt;
 
-
 	/**
 	 * @param code
 	 * @param libelle
 	 * @param prix
 	 */
-	public Pizza (String code, String libelle, double prix) {
-	Pizza.cpt++;
-	this.id=Pizza.cpt;
-	this.code=code;
-	this.libelle=libelle;
-	this.prix=prix;	
-}
+	public Pizza(String code, String libelle, double prix) {
+		Pizza.cpt++;
+		this.id = Pizza.cpt;
+		this.code = code;
+		this.libelle = libelle;
+		this.prix = prix;
+	}
 
 	/**
 	 * @param id
@@ -33,70 +32,70 @@ public class Pizza {
 	 * @param prix
 	 */
 	public Pizza(int id, String code, String libelle, double prix) {
-	this.id=id;
-	this.code=code;
-	this.libelle=libelle;
-	this.prix=prix;
+		this.id = id;
+		this.code = code;
+		this.libelle = libelle;
+		this.prix = prix;
 	}
 
+	/**
+	 * @return
+	 */
+	public int getId() {
+		return id;
+	}
 
+	/**
+	 * @param id
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
 
-	
+	/**
+	 * @param code
+	 */
+	public void setCode(String code) {
+		this.code = code;
+	}
 
+	/**
+	 * @param libelle
+	 */
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
 
-/**
- * @return
- */
-public int getId() {
-	return id;
-}
+	/**
+	 * @param prix
+	 */
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
 
-/**
- * @param id
- */
-public void setId(int id) {
-	this.id = id;
-}
+	/**
+	 * @return code
+	 */
+	public String getCode() {
+		return code;
+	}
 
-/**
- * @param code
- */
-public void setCode(String code) {
-	this.code = code;
-}
+	/**
+	 * @return libelle
+	 */
+	public String getLibelle() {
+		return libelle;
+	}
 
-/**
- * @param libelle
- */
-public void setLibelle(String libelle) {
-	this.libelle = libelle;
-}
+	/**
+	 * @return prix
+	 */
+	public double getPrix() {
+		return prix;
 
-/**
- * @param prix
- */
-public void setPrix(double prix) {
-	this.prix = prix;
-}
-
-/**
- * @return code
- */
-public String getCode() {
-	return code;
-}
-
-/**
- * @return libelle
- */
-public String getLibelle() {
-	return libelle;
-}
-/**
- * @return prix
- */
-public double  getPrix() {
-	return prix;
-
-}
+	}
+	public String toString() {
+		return this.getCode() + " -> " + this.getLibelle() + " (" + this.getPrix() + ") ";
+		
+	}
 }
