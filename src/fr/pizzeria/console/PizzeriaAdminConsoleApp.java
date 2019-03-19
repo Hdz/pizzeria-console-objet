@@ -108,6 +108,7 @@ public class PizzeriaAdminConsoleApp {
 					pizza[j].setLibelle(nomrecup);
 					pizza[j].setPrix(prixrecup2);
 					break;
+					
 				}}
 			}
 			public static void supp(Pizza[] pizza) {
@@ -120,7 +121,7 @@ public class PizzeriaAdminConsoleApp {
 							break;
 						}
 					}		
-				
+					sc.close();
 		
 		
 
