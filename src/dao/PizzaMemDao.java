@@ -1,43 +1,44 @@
 package dao;
 
 import fr.pizzeria.model.Pizza;
+import java.io.Serializable;
+import fr.pizzeria.model.*;
 
 public class PizzaMemDao implements IPizzaDao {
 
 	private Pizza[] pizzas;
-	
-// 1 Instanciation des pizzas, on cr√©er un tableau avec 100 entr√©es, pour ajouter les pizzas que l'on veut
+
+	// 1 Instanciation des pizzas, on crÈer un tableau avec 100 entrÈees, pour ajouter les pizzas que l'on veut
+
 	public PizzaMemDao() {
+		Pizza p1 = new Pizza(0,"PEP","Pepperoni",12.50,CategoriePizza.SANS_VIANDE);
+		Pizza p2 = new Pizza(1,"MAR","Margherita",14.00,CategoriePizza.SANS_VIANDE);
+		Pizza p3 = new Pizza(2,"REI","La Reine",11.50,CategoriePizza.VIANDE);
+		Pizza p4 = new Pizza(3,"FRO","La 4 fromages",12.00,CategoriePizza.SANS_VIANDE);
+		Pizza p5 = new Pizza(4,"CAN","La Cannibale",12.50,CategoriePizza.VIANDE);
+		Pizza p6 = new Pizza(5,"SAV","La Savoyarde",13.00,CategoriePizza.VIANDE);
+		Pizza p7 = new Pizza(6,"ORI","L'Orientale",13.50,CategoriePizza.VIANDE);
+		Pizza p8 = new Pizza(7,"IND","L'Indienne",14.00,CategoriePizza.VIANDE); 
 		pizzas = new Pizza[100];
-		pizzas[0] = new Pizza("PEP", "P√©p√©roni", 12.50);
-		pizzas[1] = new Pizza("MAR", "Margherita", 14.00);
-		pizzas[2] = new Pizza("REIN", "La Reine", 11.50);
-		pizzas[3] = new Pizza("FRO", "La 4 fromages", 12.00);
-		pizzas[4] = new Pizza("CAN", "La cannibale", 12.50);
-		pizzas[5] = new Pizza("SAV", "La savoyarde", 13.00);
-		pizzas[6] = new Pizza("ORI", "L'orientale", 13.50);
-		pizzas[7] = new Pizza("IND", "L'indienne", 14.00);
+		pizzas[0]=p1;pizzas[1]=p2;pizzas[2]=p3;pizzas[3]=p4;pizzas[4]=p5;pizzas[5]=p6;pizzas[6]=p7;pizzas[7]=p8;
 	}
-	//2 M√©thode qui va retourner la liste de pizzas
+	//2 MÈthode qui va retourner la liste de pizzas
 	@Override
 	public Pizza[] findAllNewPizzas() {
-		
+
 		return pizzas;
 	}
 
-//3 M√©thode qui va sauvegarder une nouvelle pizza
-	
+	//3 MÈthode qui va sauvegarder une nouvelle pizza
+
 	@Override
 	public void saveNewPizza(Pizza pizza) {
-		for (int i = 0; i < pizzas.length; i++) {
-			if (pizzas[i] == null) {
-				pizzas[i] = pizza;
-				break;
-			}
+		int idx =  premierNull(pizzas);
+		pizzas[idx]=pizza;
 		}
 
-	}
-// 4 M√©thode qui va mettre √† jour une pizza dans la liste.
+	
+	// 4 MÈthode qui va mettre ‡ jour une pizza dans la liste.
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza) {
 		for(int j=0; j<pizzas.length; j++) {
@@ -51,7 +52,7 @@ public class PizzaMemDao implements IPizzaDao {
 
 		} 
 	}
-// 5 M√©thode qui va supprimer la pizza
+	// 5 MÈthode qui va supprimer la pizza
 	@Override
 	public void deletePizza(String codePizza) {
 		for (int j = 0; j < pizzas.length; j++) {
@@ -64,13 +65,33 @@ public class PizzaMemDao implements IPizzaDao {
 
 	@Override
 	public Pizza findPizzaByCode(String codePizza) {
+		for(Pizza pi : pizzas) {
+			if(pi != null && pi.getCode().equals(codePizza)) {
+				return pi;
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public boolean pizzaExists(String codePizza) {
-		return false;
+		boolean b =false;
+		for(Pizza pi : pizzas) {
+			if(pi != null && pi.getCode().equals(codePizza)) {
+				b = true;
+				break;
+			}
+
+
+		}
+		return b;
 	}
-
-
+	private static int premierNull(Pizza [] pizza) {
+		for(int i = 0; i<pizza.length;i++) {
+			if(pizza[i] == null) {
+				return i;
+			}
+		}
+		return -1;
+	}
 }

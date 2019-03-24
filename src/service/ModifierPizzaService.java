@@ -1,30 +1,35 @@
 package service;
 import java.util.Scanner;
+
+import dao.IPizzaDao;
 import dao.PizzaMemDao;
+import fr.pizzeria.exception.StockageException;
+import fr.pizzeria.exception.UpdatePizzaException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class ModifierPizzaService extends MenuService {
 
 	@Override
-	public void executeUC(Scanner scanner, PizzaMemDao pizza) {
-		Scanner sc = new Scanner(System.in);
-		String coderecup, nomrecup, prixrecup;
-		System.out.println("3. Mettre Ã  jour une pizza");
-		System.out.println("Quel code souhaitez vous modifier ?");
-		coderecup = sc.nextLine();
-		
-		System.out.println("Veuillez mettre Ã  jour le code :");
-		String coderecup2 = sc.nextLine();
-		
-		System.out.println("Veuillez mettre Ã  jour le nom (sans espace)");
-		nomrecup = sc.nextLine();
-		
-		System.out.println("Veuillez mettre Ã  jour le prix :");
-		prixrecup = sc.nextLine();
-		Double prixrecup21 = Double.parseDouble(prixrecup);
-		
-		Pizza nouv2 = new Pizza(coderecup2,nomrecup,prixrecup21);
-		pizza.updatePizza(coderecup,nouv2);
+	public void executeUC(Scanner scanner, IPizzaDao memPizza) throws StockageException{
+		System.out.println("Mise à jour d'une pizza");
+		ListerPizzasService l = new ListerPizzasService();
+		l.executeUC(scanner, memPizza);
+		System.out.println("Veuillez choisir le code de la pizza à modifier.");
+		String code = scanner.nextLine();
+		System.out.println("Veuillez saisir le nouveau code");
+		String newCode = scanner.nextLine();
+		System.out.println("Veuillez saisir le nouveau nom (sans espace)");
+		String newNom = scanner.nextLine();
+		String newPrixStr = scanner.nextLine();
+		Double newPrix = Double.parseDouble(newPrixStr);
+		if (memPizza.pizzaExists(code)) {
+			throw new UpdatePizzaException("Le code rentré ne corresponde à aucune pizza !");
+		}
+		System.out.println("Veuillez saisir la nouvelle categorie !");
+		String newCat = scanner.nextLine();
+		CategoriePizza cat = CategoriePizza.valueOf(newCat);
+		memPizza.updatePizza(code, new Pizza(newCode, newNom, newPrix, cat));
 	}
 
 }
