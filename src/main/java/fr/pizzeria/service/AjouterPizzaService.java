@@ -1,4 +1,4 @@
-package service;
+package fr.pizzeria.service;
 import java.util.Scanner;
 
 import dao.IPizzaDao;
@@ -27,7 +27,7 @@ public class AjouterPizzaService extends MenuService{
 				String prixstr = scanner.nextLine();
 				double prix = Double.parseDouble(prixstr);
 				if(prix < 0 || prix > 30) {
-					throw new SavePizzaException("Merci de donner un prix positif et inférieur à 30");
+					throw new SavePizzaException("Merci de donner un prix positif et infï¿½rieur ï¿½ 30");
 				}
 				
 				System.out.println("Veuillez choisir le categorie de pizza : Viande, Poisson ou Sans Viande");

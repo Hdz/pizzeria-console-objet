@@ -1,4 +1,4 @@
-package service;
+package fr.pizzeria.service;
 
 public class MenuFactory {
 	public MenuService create(String typeMenu) {

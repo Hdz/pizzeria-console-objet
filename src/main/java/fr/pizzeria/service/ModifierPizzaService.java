@@ -1,4 +1,4 @@
-package service;
+package fr.pizzeria.service;
 import java.util.Scanner;
 
 import dao.IPizzaDao;
@@ -12,10 +12,10 @@ public class ModifierPizzaService extends MenuService {
 
 	@Override
 	public void executeUC(Scanner scanner, IPizzaDao memPizza) throws StockageException{
-		System.out.println("Mise à jour d'une pizza");
+		System.out.println("Mise ï¿½ jour d'une pizza");
 		ListerPizzasService l = new ListerPizzasService();
 		l.executeUC(scanner, memPizza);
-		System.out.println("Veuillez choisir le code de la pizza à modifier.");
+		System.out.println("Veuillez choisir le code de la pizza ï¿½ modifier.");
 		String code = scanner.nextLine();
 		System.out.println("Veuillez saisir le nouveau code");
 		String newCode = scanner.nextLine();
@@ -24,7 +24,7 @@ public class ModifierPizzaService extends MenuService {
 		String newPrixStr = scanner.nextLine();
 		Double newPrix = Double.parseDouble(newPrixStr);
 		if (memPizza.pizzaExists(code)) {
-			throw new UpdatePizzaException("Le code rentré ne corresponde à aucune pizza !");
+			throw new UpdatePizzaException("Le code rentrï¿½ ne corresponde ï¿½ aucune pizza !");
 		}
 		System.out.println("Veuillez saisir la nouvelle categorie !");
 		String newCat = scanner.nextLine();

@@ -6,8 +6,8 @@ import dao.PizzaMemDao;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
-import service.MenuFactory;
-import service.MenuService;
+import fr.pizzeria.service.MenuFactory;
+import fr.pizzeria.service.MenuService;
 
 public class PizzeriaAdminConsoleApp {
 	public static void main(String[] args) {

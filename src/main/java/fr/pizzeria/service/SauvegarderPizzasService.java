@@ -1,4 +1,4 @@
-package service;
+package fr.pizzeria.service;
 import java.io.*;
 import java.util.Scanner;
 import dao.IPizzaDao;

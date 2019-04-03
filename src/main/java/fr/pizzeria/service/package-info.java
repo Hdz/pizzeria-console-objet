@@ -5,4 +5,4 @@
  * @author DROUAUD
  *
  */
-package service;
+package fr.pizzeria.service;
