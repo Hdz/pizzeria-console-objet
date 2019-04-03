@@ -3,6 +3,7 @@ package fr.pizzeria.console;
 import java.util.Scanner;
 
 import dao.PizzaMemDao;
+import dao.Pizzabdd;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
@@ -11,7 +12,7 @@ import fr.pizzeria.service.MenuService;
 
 public class PizzeriaAdminConsoleApp {
 	public static void main(String[] args) {
-		PizzaMemDao pizza = new PizzaMemDao();
+		Pizzabdd pizza = new Pizzabdd();
 		MenuFactory mf = new MenuFactory();
 		Scanner sc = new Scanner(System.in);
 		String n = "0";

@@ -6,6 +6,7 @@ import fr.pizzeria.utils.*;
  *
  */
 public class Pizza {
+	private static int nbPizza = 0;
 	private int id;
 	@ToString(upper = true)
 	private String code;
@@ -55,8 +56,7 @@ private CategoriePizza catPizza;
 		for (Field attribut: fields){
 
 			if (attribut.isAnnotationPresent(ToString.class)){
-
-				
+			
 
 				ToString annotation = attribut.getAnnotation(ToString.class);
 
@@ -160,5 +160,28 @@ private CategoriePizza catPizza;
 		return prix;
 
 	}
+	
+	public static int getNbPizza()
+	{
+		return nbPizza;
+	}
+
+	/**
+	 * @param nbPizza2
+	 */
+	public static void setNbPizza(int nbPizza)
+	{
+		Pizza.nbPizza = nbPizza;
+	}
+
+	public CategoriePizza getcP()
+	{
+		return catPizza;
+	}
+
+	public void setcP(CategoriePizza cP)
+	{
+		this.catPizza = cP;
+}
 	
 }
