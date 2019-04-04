@@ -10,10 +10,9 @@ public class ListerPizzasService extends MenuService{
 
 	@Override
 	public void executeUC(Scanner scanner, IPizzaDao Pizzabdd) {
-		// TODO Auto-generated method stub
+
 		System.out.println("Liste pizzas"); 	
 		ArrayList<Pizza> pizzas = Pizzabdd.findAllNewPizzas();
-		System.out.println("ici2");
 		affiche(pizzas);
 	}
 

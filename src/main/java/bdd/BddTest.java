@@ -21,7 +21,7 @@ public class BddTest
 		// Etape 2 - Définition de la JDBC URL
 		String jdbcUrl = "jdbc:mysql://localhost/";
 		String userName = "root";
-		String pw = "";
+		String pw = "root";
 		
 		
 		// Etape 3 - Création de la connexion
@@ -34,7 +34,7 @@ public class BddTest
 		//st.execute("CREATE TABLE deuxChamp ( CODE_PAYS VARCHAR(4) PRIMARY KEY, NOM_PAYS VARCHAR(30) )");
 		
 		// Etape 5 - exploitation des résultats
-		ResultSet rs = st.executeQuery("SELECT * FROM pizza");
+		ResultSet rs = st.executeQuery("SELECT * FROM pizzas");
 		while(rs.next()) {
 			
 			String titre = rs.getString("CODE_PAYS");

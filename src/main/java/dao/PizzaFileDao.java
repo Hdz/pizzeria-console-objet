@@ -30,7 +30,6 @@ public class PizzaFileDao implements IPizzaDao{
 	
 	@Override
 	public ArrayList<Pizza> findAllNewPizzas() {
-		System.out.println("ici3");
 		return this.pizzas;
 	}
 
@@ -61,7 +60,6 @@ public class PizzaFileDao implements IPizzaDao{
 
 	@Override
 	public Pizza findPizzaByCode(String codePizza) {
-		// TODO Auto-generated method stub
 		for(Pizza pi : pizzas) {
 			if(pi != null && pi.getCode().equals(codePizza)) {
 				return pi;
@@ -72,7 +70,6 @@ public class PizzaFileDao implements IPizzaDao{
 
 	@Override
 	public boolean pizzaExists(String codePizza) {
-		// TODO Auto-generated method stub
 		boolean b =false;
 		for(Pizza pi : pizzas) {
 			if(pi != null && pi.getCode().equals(codePizza)) {
@@ -80,7 +77,7 @@ public class PizzaFileDao implements IPizzaDao{
 				break;
 			}
 		}
-		System.out.println("Aucune pizza ne correpond � ce code !");
+		System.out.println("Aucune pizza ne correpond à ce code !");
 		return b;
 	}
 	

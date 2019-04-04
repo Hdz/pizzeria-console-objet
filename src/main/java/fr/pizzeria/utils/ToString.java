@@ -11,6 +11,6 @@ public @interface ToString {
 	
 	boolean upper() default false;
 	
-	String before() default "";
-	String after() default "";
+	String before() default " | ";
+	String after() default " | ";
 }

@@ -34,7 +34,6 @@ public class PizzaMemDao implements IPizzaDao {
 	//2 Méthode qui va retourner la liste de pizzas
 	@Override
 	public ArrayList<Pizza> findAllNewPizzas() {
-		System.out.println("ici4");
 		return this.pizzas;
 	}
 
