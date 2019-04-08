@@ -8,7 +8,8 @@ import fr.pizzeria.model.*;
 
 public class PizzaMemDao implements IPizzaDao {
 
-	private ArrayList<Pizza> pizzas;
+	private ArrayList<Pizza> pizzas = new ArrayList<>();
+ 
 
 	// 1 Instanciation des pizzas, on créer un tableau avec 100 entr�ees, pour ajouter les pizzas que l'on veut
 
