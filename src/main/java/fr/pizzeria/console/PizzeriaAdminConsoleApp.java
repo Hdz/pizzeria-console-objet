@@ -9,13 +9,18 @@ import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
 import fr.pizzeria.service.MenuFactory;
 import fr.pizzeria.service.MenuService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PizzeriaAdminConsoleApp {
+	private static final Logger LOG = LoggerFactory.getLogger(PizzeriaAdminConsoleApp.class);
 	public static void main(String[] args) {
 		Pizzabdd pizza = new Pizzabdd();
 		MenuFactory mf = new MenuFactory();
 		Scanner sc = new Scanner(System.in);
 		String n = "0";
+		LOG.warn("L'application vient de démarrer.");
+		LOG.error("error :");
 
 		while (!n.equals("5")) {
 			try {
@@ -51,12 +56,17 @@ public class PizzeriaAdminConsoleApp {
 		
 		catch(NumberFormatException e) {
 			n = "0";
+			LOG.error(e.getMessage());
+
 		}
 		catch(SavePizzaException e) {
 			System.out.println(e.getMessage());
+			LOG.error(e.getMessage());
+
 		}
 		catch(StockageException e) {
 			System.out.println(e.getMessage());
+			LOG.error(e.getMessage());
 
 		}
 	}

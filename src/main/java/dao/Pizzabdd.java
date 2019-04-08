@@ -15,7 +15,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties; 
+import java.util.Properties;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory; 
 
 public class Pizzabdd implements IPizzaDao {
 
@@ -26,7 +29,9 @@ public class Pizzabdd implements IPizzaDao {
 	Connection connexionBDD = null;
 	PreparedStatement st = null;
 	FileInputStream fis = null;
+	private static final Logger LOG = LoggerFactory.getLogger(Pizzabdd.class);
 
+	
 	private void beginConnexionBdd ()
 	{
 		try
@@ -48,10 +53,13 @@ public class Pizzabdd implements IPizzaDao {
 		catch (ClassNotFoundException e)
 		{
 			e.printStackTrace();
+			LOG.error(e.getMessage());
+
 		}
 		catch (SQLException e)
 		{
 			throw new Mysqlexception ("La connexion à la base de donnée ne s'est pas déroulé correctement", e);
+
 		}
 
 
@@ -102,6 +110,7 @@ public class Pizzabdd implements IPizzaDao {
 		catch (SQLException e)
 		{
 			throw new Mysqlexception ("La récupération de la liste de pizza dans la base de donnée ne s'est pas déroulé correctement", e);
+
 		}
 
 		return tabPizza;
@@ -131,6 +140,7 @@ public class Pizzabdd implements IPizzaDao {
 		finally
 		{
 			closeConnexionBdd ();
+			
 		}
 	}
 

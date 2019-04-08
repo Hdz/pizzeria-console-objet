@@ -5,11 +5,17 @@ package dao;
 
 import java.io.*;
 import java.util.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.exception.TechnicalException;
 
 
 public class GestionFichier
 {
+	private static final Logger LOG = LoggerFactory.getLogger(GestionFichier.class);
+
 	public File file;
 	public PrintWriter fileWriter;
 	public BufferedReader fileReader;
@@ -33,6 +39,7 @@ public class GestionFichier
 		catch (IOException e)
 		{
 			throw new TechnicalException(e);
+
 		}
 	}
 	
@@ -63,6 +70,7 @@ public class GestionFichier
 		catch (IOException e)
 		{
 			throw new TechnicalException(e);
+
 		}
 	}
 	

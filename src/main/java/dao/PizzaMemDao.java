@@ -10,7 +10,7 @@ public class PizzaMemDao implements IPizzaDao {
 
 	private ArrayList<Pizza> pizzas;
 
-	// 1 Instanciation des pizzas, on cr�er un tableau avec 100 entr�ees, pour ajouter les pizzas que l'on veut
+	// 1 Instanciation des pizzas, on créer un tableau avec 100 entr�ees, pour ajouter les pizzas que l'on veut
 
 	public PizzaMemDao() {
 		Pizza p1 = new Pizza(0,"PEP","Pepperoni",12.50,CategoriePizza.SANS_VIANDE);
@@ -37,7 +37,7 @@ public class PizzaMemDao implements IPizzaDao {
 		return this.pizzas;
 	}
 
-	//3 M�thode qui va sauvegarder une nouvelle pizza
+	//3 Méthode qui va sauvegarder une nouvelle pizza
 
 	@Override
 	public void saveNewPizza(Pizza pizza) {
@@ -45,7 +45,7 @@ public class PizzaMemDao implements IPizzaDao {
 	}
 
 
-	// 4 M�thode qui va mettre � jour une pizza dans la liste.
+	// 4 Méthode qui va mettre � jour une pizza dans la liste.
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza) {
 		for(Pizza pi : pizzas) {
