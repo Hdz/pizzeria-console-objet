@@ -4,6 +4,7 @@ import fr.pizzeria.model.Pizza;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.model.*;
 
 public class PizzaMemDao implements IPizzaDao {
@@ -41,8 +42,12 @@ public class PizzaMemDao implements IPizzaDao {
 	//3 Méthode qui va sauvegarder une nouvelle pizza
 
 	@Override
-	public void saveNewPizza(Pizza pizza) {
-		pizzas.add(pizza);
+	public void saveNewPizza(Pizza pizza) throws SavePizzaException {
+		if (pizza.getCode().length() < 3) {
+			pizzas.add(pizza);
+		} else {
+			throw new SavePizzaException("Le code ne doit pas être inférieur à 3");
+		}
 	}
 
 

@@ -2,8 +2,6 @@ package fr.pizzeria.service;
 import java.util.Scanner;
 
 import dao.IPizzaDao;
-import dao.PizzaMemDao;
-import fr.pizzeria.model.Pizza;
 public class SupprimerPizzaService extends MenuService {
 
 	@Override

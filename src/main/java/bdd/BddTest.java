@@ -14,7 +14,6 @@ public class BddTest
 	public static void main(String[] args) throws ClassNotFoundException, SQLException 
 	{
 
-		// DriverManager.registerDriver(new Driver());
 		// Etape 1 - Chargement du pilote
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		
@@ -31,7 +30,6 @@ public class BddTest
 		Statement st = connexionBDD.createStatement();
 		
 		// Etape 4 - exécution  de la requête
-		//st.execute("CREATE TABLE deuxChamp ( CODE_PAYS VARCHAR(4) PRIMARY KEY, NOM_PAYS VARCHAR(30) )");
 		
 		// Etape 5 - exploitation des résultats
 		ResultSet rs = st.executeQuery("SELECT * FROM pizzas");

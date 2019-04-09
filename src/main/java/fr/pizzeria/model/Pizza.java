@@ -73,22 +73,13 @@ private CategoriePizza catPizza;
 				try {
 
 					chaine+=before;
-
-					if (uppercase){
-
+					if (uppercase && attribut.get(this) != null){
 						chaine+=attribut.get(this).toString().toUpperCase();
-
 					}
-
 					else {
-
 						chaine+=attribut.get(this);
-
 					}
-
 					chaine+=after;
-
-					
 
 				} catch (IllegalArgumentException | IllegalAccessException e) {
 
@@ -183,5 +174,48 @@ private CategoriePizza catPizza;
 	{
 		this.catPizza = cP;
 }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((catPizza == null) ? 0 : catPizza.hashCode());
+		result = prime * result + ((code == null) ? 0 : code.hashCode());
+		result = prime * result + ((libelle == null) ? 0 : libelle.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(prix);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pizza other = (Pizza) obj;
+		if (catPizza != other.catPizza)
+			return false;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
+		if (libelle == null) {
+			if (other.libelle != null)
+				return false;
+		} else if (!libelle.equals(other.libelle))
+			return false;
+		if (Double.doubleToLongBits(prix) != Double.doubleToLongBits(other.prix))
+			return false;
+		return true;
+	}
+
+
+
+
 	
 }

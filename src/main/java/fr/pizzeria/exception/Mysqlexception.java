@@ -16,19 +16,16 @@ private static final long serialVersionUID = -8898974333236523950L;
 	public Mysqlexception()
 	{
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Mysqlexception(String arg0, Throwable arg1)
 	{
 		super(arg0, arg1);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Mysqlexception(Throwable arg0)
 	{
 		super(arg0);
-		// TODO Auto-generated constructor stub
 	}
 
 }

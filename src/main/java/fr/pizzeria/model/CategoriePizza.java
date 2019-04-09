@@ -2,9 +2,9 @@ package fr.pizzeria.model;
 
 public enum CategoriePizza {
 
-	VIANDE("Viande"),
-	POISSON("Poisson"),
-	SANS_VIANDE("Sans Viande");
+	VIANDE("VIANDE"),
+	POISSON("POISSON"),
+	SANS_VIANDE("SANS_VIANDE");
 	
 	private String nom;
 	
@@ -25,7 +25,7 @@ public enum CategoriePizza {
 		CategoriePizza [] cat = values();
 		
 		for(CategoriePizza p : cat) {
-			if(p.getNom().equals(name)) {
+			if(p.getNom().equalsIgnoreCase(name)) {
 				return p;
 			}
 		}
