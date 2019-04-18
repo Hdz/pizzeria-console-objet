@@ -17,14 +17,12 @@ public class AjouterPizzaService extends MenuService{
 		boolean except = false;
 		String code = "";
 		while (except == false) {
-			System.out.println("Veuillez saisir le code :");
+			System.out.println("Veuillez saisir le code :");	
 			code = scanner.nextLine();
 			if (code.length() != 3) {
 				System.out.println("Le code doit etre de 3 lettres !");
-				// throw new SavePizzaException("Veuillez saisir un code de 3 lettres");
 				continue;
 			} else if (memPizza.pizzaExists(code) != false) {
-				// throw new SavePizzaException("Ce code existe déjà, rentrer un autre code");
 				System.out.println("Le code saisie existe déjà ! ");
 				continue;
 			} else {
@@ -49,5 +47,10 @@ public class AjouterPizzaService extends MenuService{
 
 
 		}
+	}
+
+	public static void setGestionnairePizza(IPizzaDao dao) {
+		// TODO Auto-generated method stub
+		
 	}
 }

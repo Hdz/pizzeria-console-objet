@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import dao.IPizzaDao;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaJPADao implements IPizzaDao {
@@ -18,7 +19,7 @@ public class PizzaJPADao implements IPizzaDao {
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("demo-jpa");
 
 	@Override
-	public ArrayList<Pizza> findAllNewPizzas() {
+	public List<Pizza> findAllNewPizzas() {
 		// Début d'une unité de travail
 		EntityManager em1 = emf.createEntityManager();
 		// création d'une requête
@@ -70,7 +71,7 @@ public class PizzaJPADao implements IPizzaDao {
 
 	@Override
 	public Pizza findPizzaByCode(String codePizza) {
-		Pizza p1 = new Pizza();
+		Pizza p1 = new Pizza(1, "FRA", "La française", 12.00, CategoriePizza.SANS_VIANDE);
 		EntityManager em1 = emf.createEntityManager();
 		TypedQuery<Pizza> requete = em1.createQuery("SELECT p FROM Pizza p", Pizza.class);
 		List<Pizza> pizzas = requete.getResultList();

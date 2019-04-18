@@ -3,13 +3,18 @@ package dao;
 import fr.pizzeria.model.Pizza;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.model.*;
 
 public class PizzaMemDao implements IPizzaDao {
-
-	private ArrayList<Pizza> pizzas = new ArrayList<>();
+	private static final Logger LOG =  LoggerFactory.getLogger(PizzaMemDao.class);
+	private List<Pizza> pizzas = new ArrayList<>();
  
 
 	// 1 Instanciation des pizzas, on créer un tableau avec 100 entr�ees, pour ajouter les pizzas que l'on veut
@@ -35,7 +40,7 @@ public class PizzaMemDao implements IPizzaDao {
 	}
 	//2 Méthode qui va retourner la liste de pizzas
 	@Override
-	public ArrayList<Pizza> findAllNewPizzas() {
+	public List<Pizza> findAllNewPizzas() {
 		return this.pizzas;
 	}
 
@@ -43,7 +48,7 @@ public class PizzaMemDao implements IPizzaDao {
 
 	@Override
 	public void saveNewPizza(Pizza pizza) throws SavePizzaException {
-		if (pizza.getCode().length() < 3) {
+		if (pizza.getCode().length() <= 3) {
 			pizzas.add(pizza);
 		} else {
 			throw new SavePizzaException("Le code ne doit pas être inférieur à 3");
@@ -55,7 +60,7 @@ public class PizzaMemDao implements IPizzaDao {
 	@Override
 	public void updatePizza(String codePizza, Pizza pizza) {
 		for(Pizza pi : pizzas) {
-			if(pi != null && pi.getCode().equals(codePizza)) {
+			if(pi.getCode().equals(codePizza)) {
 				pi = pizza;
 			}
 		}
@@ -64,12 +69,18 @@ public class PizzaMemDao implements IPizzaDao {
 	// 5 M�thode qui va supprimer la pizza
 	@Override
 	public void deletePizza(String codePizza) {
-		for(Pizza pi : pizzas) {
-			if(pi != null && pi.equals(findPizzaByCode(codePizza))){
-				pi=null;
+		Iterator<Pizza> it = pizzas.iterator();
+
+		while (it.hasNext())
+		{
+			Pizza p = it.next();
+			if (p.getCode().equals(codePizza))
+			{
+				it.remove();
 			}
 		}
-		System.out.println("pizza supprimé !");
+		
+		LOG.info("Pizza Supprimée");
 		}
 	
 

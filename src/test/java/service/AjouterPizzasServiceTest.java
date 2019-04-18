@@ -29,28 +29,21 @@ public class AjouterPizzasServiceTest {
 
 	public void executeUC() throws StockageException {
 
-		
-		// création du mock
-		IPizzaDao dao = Mockito.mock(IPizzaDao.class);
-		
-		systemInMock.provideLines("VEZ", "VESUVIO","12.00","SANS_VIANDE");
+		// Création du mock
+				IPizzaDao mockedDao = Mockito.mock(IPizzaDao.class);
+				// IPizzaDao dao = new PizzaMemDao();
+				// Etant donné la saisie utilisateur suivante
+				systemInMock.provideLines("VEZ", "Vezuve", "12.00", "SANS_VIANDE");
 
-		// définir comportement du mock
-		Pizza pizza = new Pizza("VEZ", "VESUVIO", 12.00, CategoriePizza.SANS_VIANDE);
-			
-		// saisie utilisateur :
-		Mockito.doThrow(SavePizzaException.class).when(dao).saveNewPizza(pizza);
-		
-		AjouterPizzaService ajouterPizzasService = new AjouterPizzaService();
-		ajouterPizzasService.executeUC(new Scanner(System.in), dao);
+				// définir comportement du mock
+				Pizza pizza = new Pizza("VEZ", "Vezuve", 12.00, CategoriePizza.SANS_VIANDE);
 
-		// vérifier que la méthode saveNewPizza du mock a été invoquée
+				
+				AjouterPizzaService ajouterPizzasService = new AjouterPizzaService();
 
-		Mockito.verify(dao).saveNewPizza(pizza);
-
-
-		
-
+				ajouterPizzasService.executeUC(new Scanner(System.in), mockedDao);
+				// vérifier que la méthode saveNewPizza
+				Mockito.verify(mockedDao).saveNewPizza(pizza);
 		
 
 	}

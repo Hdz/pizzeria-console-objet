@@ -10,6 +10,11 @@ import org.junit.rules.ExpectedException;
 import org.junit.rules.TestName;
 
 import dao.PizzaMemDao;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.pizzeria.exception.SavePizzaException;
@@ -22,8 +27,11 @@ public class TestPizzaMemDao {
 
 		private static final Logger LOG =  LoggerFactory.getLogger(PizzaMemDao.class);
 		private PizzaMemDao pizzaMemDao;
+		PizzaMemDao p;
 		
-	@Rule public TestName testName;	
+		
+	@Rule	
+	public TestName pTest = new TestName();
 	@Rule public ExpectedException exE = ExpectedException.none();
 	
 	@Before
@@ -35,35 +43,25 @@ public class TestPizzaMemDao {
 	@Test
 	public void testFindAllPizzas() {
 		
-		exE.expect(NumberFormatException.class);
-		exE.expectMessage("Oops");
-		LOG.info("Execution de la méthode {}", testName.getMethodName());
-		
+		LOG.info("Execution de la méthode {}", pTest.getMethodName());
 		PizzaMemDao pizzaMemDao = new PizzaMemDao(); //Instancie de pizzaMemDao
 		LOG.info("Lorsque l'on recherche la liste de pizza :");
 		List<Pizza> list = pizzaMemDao.findAllNewPizzas(); //Nouveau tableau de pizza, lorsque j'invoque la méthode Findall New Pizza
 		LOG.info("Alors la liste de pizza contient au moins une pizza");
 		Assert.assertTrue(list.size() > 0); // Récupère la taille si > 0 alors le test est retourne vrai, alors y'a bien une pizza dans la liste
+		
 	}
 	
-	@Test(expected = SavePizzaException.class)
+	@Test()
 	public void test_Save_new_Pizza() throws SavePizzaException {
-		
-		LOG.info("Lorsque l'on savegarde un code avec un code de moins de 3 char");
-		LOG.info("Alors une Exception est lancée");
-		exE.expect(SavePizzaException.class);
-		exE.expectMessage("Oops");
-		pizzaMemDao.saveNewPizza(new Pizza(8, "VE", "VEZUVIO", 12.50, CategoriePizza.SANS_VIANDE));
 
-		
-		
-		
-	/**	PizzaMemDao pizzaMemDao = new PizzaMemDao(); //Instancie de pizzaMemDao
-		List<Pizza> Listedepizza = pizzaMemDao.findAllNewPizzas(); //Nouveau tableau de pizza, lorsque j'invoque la méthode Findall New Pizza
-		Pizza pizza2 = new Pizza(8, "VEZ", "VEZUVIO", 12.50, CategoriePizza.SANS_VIANDE); //Nouvelle Pizza
-		pizzaMemDao.saveNewPizza(pizza2); //On save new Pizza
-		int i1 = Listedepizza.size(); //on fait un compte de nombre de ligne dans le tableau pizza
-		Assert.assertTrue(pizzaMemDao.findAllNewPizzas().size() == (i1 + 1));	**/
+		PizzaMemDao pizzaMemDao = new PizzaMemDao(); //Instancie de pizzaMemDao
+		Pizza uneNouvellePizza = new Pizza(8, "VEZ", "VEZUVIO", 12.50, CategoriePizza.SANS_VIANDE);
+		int size = pizzaMemDao.findAllNewPizzas().size();
+		LOG.info("Lorsqu'on insère une nouvelle pizza dans la liste");
+		pizzaMemDao.saveNewPizza(uneNouvellePizza);
+		LOG.info("Alors on doit avoir une liste plus grande de 1");
+		assertEquals(size + 1, pizzaMemDao.findAllNewPizzas().size());
 		} 
 
 	@Test
@@ -72,7 +70,7 @@ public class TestPizzaMemDao {
 		List<Pizza> list2 = pMemdao.findAllNewPizzas();
 		Pizza uneNouvellePizza = new Pizza(8, "VEZ", "VEZUVIO", 12.50, CategoriePizza.SANS_VIANDE);
 		pMemdao.saveNewPizza(uneNouvellePizza);
-		pMemdao.updatePizza("VEZ", new Pizza(3,"FRO","La 4 fromages",12.00,CategoriePizza.SANS_VIANDE));
+		pMemdao.updatePizza("VEZ", new Pizza(8,"FRO","La 4 fromages",12.00,CategoriePizza.SANS_VIANDE));
 		for (Pizza p : list2) {
 			if (p != null && p.getCode().equals("FRO")) {
 				Assert.assertTrue(p.getLibelle().equals("La 4 fromages"));
@@ -84,14 +82,13 @@ public class TestPizzaMemDao {
 
 
 	@Test
-	public void test_delete_new_Pizza() {
-		PizzaMemDao pizzaMemDao = new PizzaMemDao();
-		List<Pizza> pizzas = pizzaMemDao.findAllNewPizzas();
-		int tailleInit = pizzas.size();
-		Pizza pizza = pizzas.get(0);
+	public void test_delete_new_Pizza() throws SavePizzaException {
+		PizzaMemDao pizzaMemDao = new PizzaMemDao(); //Instancie de pizzaMemDao
+		int tailleInit = pizzaMemDao.findAllNewPizzas().size();
+		Pizza pizza = pizzaMemDao.findAllNewPizzas().get(7);
 		pizzaMemDao.deletePizza(pizza.getCode());
-		Assert.assertNotEquals(pizzaMemDao.findAllNewPizzas().size(), tailleInit);
-	}
+		Assert.assertEquals(tailleInit-1, pizzaMemDao.findAllNewPizzas().size());
+		}
 
 	@Test
 	public void find_Pizza_By_Code() {
